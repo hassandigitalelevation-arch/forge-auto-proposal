@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Auto Works — Short Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#f3f4f9; color:#1a1a2e; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3 { font-family:'Playfair Display',serif; }
+
+  .wrap { max-width:760px; margin:0 auto; }
+
+  /* HERO */
+  .hero { background:radial-gradient(1100px 520px at 72% 18%, rgba(232,93,31,0.2), transparent 62%), linear-gradient(135deg,#05061a 0%,#0a1040 55%,#05061a 100%); color:#fff; padding:56px 32px 48px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px); background-size:46px 46px; }
+  .hero .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#e85d1f; border:1px solid rgba(232,93,31,0.4); background:rgba(232,93,31,0.12); display:inline-block; padding:8px 18px; border-radius:6px; position:relative; }
+  .hero h1 { font-size:34px; font-weight:800; line-height:1.15; margin:20px 0 12px; position:relative; }
+  .hero h1 span { color:#e85d1f; }
+  .hero .sub { font-size:14px; color:#a9a9c2; max-width:520px; margin:0 auto; position:relative; }
+  .hero .demo { margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#fff; background:rgba(232,93,31,0.18); border:1px solid rgba(232,93,31,0.5); padding:10px 20px; border-radius:8px; display:inline-block; position:relative; }
+  .hero .demo a { color:#fff; text-decoration:none; }
+
+  /* CONTENT */
+  .content { background:#fff; padding:28px 32px 24px; }
+
+  .row { display:grid; grid-template-columns:1fr; gap:14px; margin:14px 0; }
+  @media(min-width:640px){ .row { grid-template-columns:1fr 1fr; } }
+
+  .card { border:1px solid #ececf4; border-radius:14px; padding:18px 20px; background:#fff; box-shadow:0 8px 26px -16px rgba(20,20,50,0.14); position:relative; overflow:hidden; }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#e85d1f,#ffb479); }
+  .card h3 { font-size:16px; font-weight:700; color:#0a0a0c; margin-bottom:5px; }
+  .card p { font-size:12.5px; color:#555; }
+
+  .prob { background:linear-gradient(135deg,#060724,#0a1040); color:#fff; border-radius:14px; padding:20px 24px; margin:4px 0 18px; border-left:4px solid #e85d1f; }
+  .prob p { color:#cfcfe0; font-size:13.5px; }
+
+  .sec-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:#e85d1f; margin:22px 0 10px; display:flex; align-items:center; gap:10px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:#ececf4; }
+
+  ul.feats { margin:8px 0 0; list-style:none; }
+  ul.feats li { padding:9px 0; border-bottom:1px solid #f2f2f7; font-size:13.5px; color:#333; display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; }
+  ul.feats li::before { content:'✓'; display:inline-block; }
+  ul.feats li span { font-family:'JetBrains Mono',monospace; font-size:10px; color:#e85d1f; }
+
+  .price { text-align:center; background:linear-gradient(180deg,#f7f7fc,#f2f2f9); border:1px solid #eed8c4; border-radius:14px; padding:24px 20px; }
+  .price .pf { font-size:34px; font-weight:800; color:#e85d1f; font-family:'Playfair Display',serif; }
+  .price .was { font-size:12px; color:#999; text-decoration:line-through; }
+  .price p { font-size:12px; color:#666; margin:6px 0 0; }
+  .price .split { margin-top:14px; border-top:1px solid rgba(232,93,31,0.2); padding-top:12px; font-size:13px; color:#0a0a0c; font-weight:600; display:flex; justify-content:center; gap:20px; }
+
+  .tl { display:flex; align-items:center; justify-content:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#0a0a0c; margin:6px 0; }
+  .tl b { color:#e85d1f; }
+
+  .cta { text-align:center; background:#fff; padding:32px 28px; border-top:1px solid #ececf4; }
+  .cta h2 { font-size:24px; font-weight:800; color:#0a0a0c; margin-bottom:6px; }
+  .cta p { font-size:13px; color:#666; margin-bottom:20px; }
+  .cta .btn { display:inline-block; background:linear-gradient(120deg,#e85d1f,#f06030); color:#fff; font-weight:700; font-size:15px; padding:15px 40px; border-radius:10px; text-decoration:none; box-shadow:0 14px 34px -14px rgba(232,93,31,0.6); }
+  .cta .alt { margin-top:14px; font-size:12px; color:#888; }
+
+  .foot { text-align:center; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; color:#a9a9c2; padding:18px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="label">Short Proposal</span>
+  <h1>A Complete Digital System for Your <span>Auto Repair Shop</span></h1>
+  <p class="sub">Not a website — a booking system, management dashboard and SEO engine that brings you customers 24/7.</p>
+  <div class="demo">▶ <a href="https://forge-auto.vercel.app/">forge-auto.vercel.app</a> — click through the live system</div>
+</div>
+
+<div class="wrap">
+<div class="content">
+
+  <div class="prob">
+    <p><strong>Today, customers leak silently.</strong> They search you on Google — a competitor appears. They call while you're busy — the next shop picks up. They want to book at 11pm — nobody answers. Every week, some of them are choosing someone else without you ever knowing.</p>
+  </div>
+
+  <div class="sec-label">What you get</div>
+  <div class="row">
+    <div class="card"><h3>Premium website</h3><p>Cinematic, mobile-first. Looks like the expert shop people pay more for.</p></div>
+    <div class="card"><h3>Online booking, 24/7</h3><p>Customers pick their car, tap the problem part, choose a time. Double-booking impossible.</p></div>
+    <div class="card"><h3>Your admin dashboard</h3><p>Bookings, customer CRM, calendar, revenue reports — all yours, password protected.</p></div>
+    <div class="card"><h3>Google SEO engine</h3><p>180+ pages targeting your brands and areas — free advertising that compounds.</p></div>
+  </div>
+
+  <div class="sec-label">Included</div>
+  <ul class="feats">
+    <li>Custom design, no templates <span>✓</span></li>
+    <li>All source code delivered &amp; owned by you <span>✓</span></li>
+    <li>Launch support + 90-day warranty <span>✓</span></li>
+  </ul>
+
+  <div class="sec-label">Investment</div>
+  <div class="price">
+    <div class="was">Standard production rate $60,000</div>
+    <div class="pf">$32,000</div>
+    <p>Founding client special rate — the complete system, delivered in 3 weeks.</p>
+    <div class="split"><span>$16,000 to start</span><span>$16,000 on delivery</span></div>
+  </div>
+
+  <div class="sec-label">Timeline</div>
+  <div class="tl">3 weeks — from kickoff to live launch</div>
+
+</div>
+
+<div class="cta">
+  <h2>See it working before you decide</h2>
+  <p>Click through the live demo, then let's have one short call to tailor it to your shop.</p>
+  <a class="btn" href="https://forge-auto.vercel.app/">Try the Live Demo →</a>
+  <p class="alt">Prepared by Digital Elevation Co.</p>
+</div>
+
+
+
+</div>
+</body>
+</html>
